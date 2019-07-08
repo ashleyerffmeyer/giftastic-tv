@@ -1,16 +1,19 @@
 //
 $(document).ready(function () {
 
-    //Initial array of TV Shows
-    var tvShows = ['Cheers', 'The Office', 'Stranger Things', 'Gilmore Girls', 'Parks and Rec', '30 Rock', 'Dawson\'s Creek', 'The OC', 'Friends', 'Fraiser', 'Family Guy', 'Will and Grace', 'Felicity', 'The Americans', 'Game of Thrones', 'Twilight Zone', 'Six Feet Under', 'Veep']
+    // Initial array of TV Shows
+    var tvShows = ['arrested development', 'unbreakable kimmy schmidt', 'cheers', 'the office', 'stranger things', 'gilmore girls', 'parks and rec', '30 rock', 'dawson\'s creek', 'the oc', 'friends', 'fraiser', 'family guy', 'will and grace', 'felicity', 'the americans', 'game of thrones', 'twilight zone', 'six feet under', 'veep']
 
-    //Function to display TV Show names on buttons
+    // Function to display TV Show names on buttons
     var renderShowButtons = function () {
+
+        // Deleting the buttons prior to adding new movies; this is necessary otherwise repeat buttons will be produced
+        $("#buttons-view").empty();
 
         //Looping through array of movies
         for (i = 0; i < tvShows.length; i++) {
 
-            // Then dynamicaly generating buttons for each movie in the array.
+            // Dynamicaly generating buttons for each movie in the array
             // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
             var a = $("<button>");
 
@@ -78,13 +81,25 @@ $(document).ready(function () {
                         // Creating a paragraph tag with the result item's rating
                         var p = $("<p>").text("Rating: " + rating);
 
+                        // Creating the animated gif url
+                        var animated = results[i].images.original.url;
+
+                        // Creating the still gif url
+                        var still = results[i].images.original_still.url
+
                         // Creating an image tag
                         var showImage = $("<img>");
 
                         // Giving the image tag an src attribute of a proprty pulled off the
                         // result item
-                        showImage.attr("src", results[i].images.original.url);
-                        console.log(results[i].images.original);
+                        showImage.attr("src", still);
+                        showImage.attr("data-still", still);
+                        showImage.attr("data-animated", animated)
+                        showImage.attr("data-state", "still");
+                        showImage.attr("searchImage");
+
+                        //test
+                        console.log(still);
 
                         // Appending the paragraph and personImage we created to the "gifDiv" div we created
                         gifDiv.append(p);
@@ -98,7 +113,37 @@ $(document).ready(function () {
             });
     });
 
+    $(document).on("click", ".searchImage", function () {
+        var state = $(this).attr('state');
+        if (state == 'still') {
+            $(this).attr('src', $(this).data('animated'));
+            $(this).attr('data-state', 'animated');
+        }
+        else {
+            $(this).attr('src', $(this).data('still'));
+            $(this).attr('data-state', 'still');
+        }
+    });
 
+    // This function handles events where one button is clicked
+    $("#add-show").on("click", function (event) {
+        event.preventDefault();
+
+        // This line grabs the input from the textbox
+        var newShow = $("#show-input").eq(0).val();
+
+        // Adding the show from the textbox to our array
+        tvShows.push(newShow);
+
+        //test
+        console.log(tvShows);
+
+        // Calling renderShowButtons function which handles the processing of our movie array
+        renderShowButtons();
+
+        //
+        return false;
+    });
 
 
 });
