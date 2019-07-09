@@ -7,7 +7,7 @@ $(document).ready(function () {
     // Function to display TV Show names on buttons
     var renderShowButtons = function () {
 
-        // Deleting the buttons prior to adding new movies; this is necessary otherwise repeat buttons will be produced
+        // Deleting the buttons prior to adding new shows; this is necessary otherwise repeat buttons will be produced
         $("#buttons-view").empty();
 
         //Looping through array of movies
@@ -33,7 +33,7 @@ $(document).ready(function () {
     renderShowButtons();
 
     // Event listener for all button elements
-    $("button").on("click", function () {
+    $(".show").on("click", function () {
 
         // In this case, the "this" keyword refers to the button that was clicked
         var show = $(this).attr("data-name");
@@ -45,7 +45,7 @@ $(document).ready(function () {
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
             show + "&api_key=etsRIVN264F5s3wV2DrY1ddmyAZxSmDx&limit=10";
 
-        //test
+        // test
         console.log(queryURL);
 
         // Performing our AJAX GET request
@@ -99,7 +99,7 @@ $(document).ready(function () {
                         showImage.attr("searchImage");
 
                         //test
-                        console.log(still);
+                        console.log(show);
 
                         // Appending the paragraph and personImage we created to the "gifDiv" div we created
                         gifDiv.append(p);
@@ -113,14 +113,23 @@ $(document).ready(function () {
             });
     });
 
+    // ----------------------------------------------------------------
+    // CLICK HANDLERS
+    // ----------------------------------------------------------------
+
+    // When click on gif with class .searchImage, perform the following actions...
     $(document).on("click", ".searchImage", function () {
-        var state = $(this).attr('state');
-        if (state == 'still') {
-            $(this).attr('src', $(this).data('animated'));
+
+        // Creating a variable state
+        var state = $(this).attr('data-state');
+
+        // If/else statement to determine which url to display and change the data-state
+        if (state === 'still') {
+            $(this).attr('src', $(this).data('data-animated'));
             $(this).attr('data-state', 'animated');
         }
         else {
-            $(this).attr('src', $(this).data('still'));
+            $(this).attr('src', $(this).data('data-still'));
             $(this).attr('data-state', 'still');
         }
     });
@@ -135,7 +144,7 @@ $(document).ready(function () {
         // Adding the show from the textbox to our array
         tvShows.push(newShow);
 
-        //test
+        // test
         console.log(tvShows);
 
         // Calling renderShowButtons function which handles the processing of our movie array
@@ -144,6 +153,5 @@ $(document).ready(function () {
         //
         return false;
     });
-
 
 });

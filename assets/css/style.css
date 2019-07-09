@@ -1,0 +1,18 @@
+body{
+    background-image: url(../images/tv.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.jumbotron{
+    text-align: center;
+}
+
+#add-show, .show{
+    height: 40px;
+    font-size: 20px;
+    color: aquamarine; 
+    background-color: grey;
+    display: inline-block;
+}
