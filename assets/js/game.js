@@ -23,6 +23,8 @@ var renderShowButtons = function (tvShows, classToAdd, areaToAddTo) {
 
         // Adding a class
         a.addClass(classToAdd);
+        a.addClass('btn');
+        a.addClass('btn-secondary');
 
         // Adding a data-attribute with a value of the TV show at index i
         a.attr("data-name", tvShows[i]);
@@ -33,7 +35,6 @@ var renderShowButtons = function (tvShows, classToAdd, areaToAddTo) {
         // Adding the button to the HTML
         $(areaToAddTo).append(a);
     }
-
 
 }
 
