@@ -9,7 +9,7 @@ body{
     text-align: center;
 }
 
-#add-show, .show{
+#add-show, .showButton{
     height: 40px;
     font-size: 20px;
     color: aquamarine; 
