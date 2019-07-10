@@ -48,6 +48,10 @@ var renderShowButtons = function (tvShows, classToAdd, areaToAddTo) {
     }
 }
 
+// ----------------------------------------------------------------
+// CLICK HANDLERS
+// ----------------------------------------------------------------
+
 // Event listener for all button elements
 $(document).on("click", '.showButton', function () {
 
@@ -93,11 +97,18 @@ $(document).on("click", '.showButton', function () {
                     // Storing the result item's rating
                     var rating = results[i].rating;
 
+                    // Storing the result item's title
+                    var title = results[i].title;
+
                     //test
                     console.log(rating);
+                    console.log(title);
 
                     // Creating a paragraph tag with the result item's rating
                     var p = $("<p>").text("Rating: " + rating);
+
+                    // Creating a paragraph tage with the result item's title
+                    var p2 = $("<p>").text("Title: " + title);
 
                     // Creating the animated gif url
                     var animated = results[i].images.original.url;
@@ -116,12 +127,13 @@ $(document).on("click", '.showButton', function () {
                     showImage.attr("data-state", "still");
                     showImage.addClass("searchImage");
 
-                    //test
+                    // test
                     console.log(show);
 
                     // Appending the paragraph and personImage we created to the "gifDiv" div we created
-                    gifDiv.append(p);
                     gifDiv.append(showImage);
+                    gifDiv.append(p2);
+                    gifDiv.append(p);
 
                     // Prepending the gifDiv to the "#gifs-appear-here" div in the HTML
                     $("#gifs-appear-here").prepend(gifDiv);
@@ -130,10 +142,6 @@ $(document).on("click", '.showButton', function () {
 
         });
 });
-
-// ----------------------------------------------------------------
-// CLICK HANDLERS
-// ----------------------------------------------------------------
 
 // When click on gif with class .searchImage, perform the following actions...
 $(document).on("click", ".searchImage", function () {

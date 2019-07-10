@@ -56,6 +56,6 @@ When the user clicks on TV show button, the page grabs 10 static, non-animated g
 
 When the user clicks one of the still GIPHY images, the gif animates. If the user clicks the gif again, it stops playing.
 
-Above every gif, its rating is displayed.
+Below every gif, its title and rating is displayed.
 
 A form on the page takes a value from the user input box and adds it to the list of TV show buttons. This is achieved by a function call that takes each topic in an array of TV shows and remakes the buttons on the page.
