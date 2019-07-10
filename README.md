@@ -17,6 +17,7 @@ Ashley Erffmeyer, with major support from KU's Coding Boot Camp staff members:
 * JSON
 * JavaScript
 * jQuery
+* Bootstrap
 * CSS
 * HTML
 
