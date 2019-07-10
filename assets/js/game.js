@@ -1,12 +1,23 @@
-//
+// Boiler plate 'document-ready-function'
 $(document).ready(function () {
 
+    // Run function to display TV show buttons
     renderShowButtons(tvShows, 'showButton', '#buttons-view');
-    console.log("page loaded")
 
+    // Test
+    console.log("page loaded");
 })
+
+// ----------------------------------------------------------------
+// GLOBAL VARIABLES
+// ----------------------------------------------------------------
+
 // Initial array of TV Shows
 var tvShows = ['arrested development', 'unbreakable kimmy schmidt', 'cheers', 'the office', 'stranger things', 'gilmore girls', 'parks and rec', '30 rock', 'dawson\'s creek', 'the oc', 'friends', 'fraiser', 'family guy', 'will and grace', 'felicity', 'the americans', 'game of thrones', 'twilight zone', 'six feet under', 'veep']
+
+// ----------------------------------------------------------------
+// FUNCTIONS
+// ----------------------------------------------------------------
 
 // Function to display TV Show names on buttons
 var renderShowButtons = function (tvShows, classToAdd, areaToAddTo) {
@@ -14,14 +25,14 @@ var renderShowButtons = function (tvShows, classToAdd, areaToAddTo) {
     // Deleting the buttons prior to adding new shows; this is necessary otherwise repeat buttons will be produced
     $(areaToAddTo).empty();
 
-    //Looping through array of movies
+    // Looping through array of movies
     for (i = 0; i < tvShows.length; i++) {
 
         // Dynamicaly generating buttons for each movie in the array
         // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
         var a = $("<button>");
 
-        // Adding a class
+        // Adding a class and bootstrap classes
         a.addClass(classToAdd);
         a.addClass('btn');
         a.addClass('btn-secondary');
@@ -35,7 +46,6 @@ var renderShowButtons = function (tvShows, classToAdd, areaToAddTo) {
         // Adding the button to the HTML
         $(areaToAddTo).append(a);
     }
-
 }
 
 // Event listener for all button elements
@@ -44,14 +54,14 @@ $(document).on("click", '.showButton', function () {
     // In this case, the "this" keyword refers to the button that was clicked
     var show = $(this).attr("data-name");
 
-    //test
+    // Test
     console.log(show);
 
     // Constructing a URL to search Giphy for the name of the TV show
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         show + "&api_key=etsRIVN264F5s3wV2DrY1ddmyAZxSmDx&limit=10";
 
-    // test
+    // Test
     console.log(queryURL);
 
     // Performing our AJAX GET request
@@ -60,11 +70,13 @@ $(document).on("click", '.showButton', function () {
         method: "GET"
     })
 
-        // After the data comes back from the API
+        // After the data comes back from the API, do the actions in this functiong
         .then(function (response) {
 
             // Storing an array of results in the results variable
             var results = response.data;
+
+            // Test
             console.log(response);
 
             // Looping over every result item
@@ -76,7 +88,7 @@ $(document).on("click", '.showButton', function () {
                 if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
 
                     // Creating a div for the gif
-                    var gifDiv = $("<div>");
+                    var gifDiv = $('<div class="divForGif">');
 
                     // Storing the result item's rating
                     var rating = results[i].rating;
