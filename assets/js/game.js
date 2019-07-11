@@ -111,10 +111,10 @@ $(document).on("click", '.showButton', function () {
                     var p2 = $("<p>").text("Title: " + title);
 
                     // Creating the animated gif url
-                    var animated = results[i].images.original.url;
+                    var animated = results[i].images.downsized.url;
 
                     // Creating the still gif url
-                    var still = results[i].images.original_still.url;
+                    var still = results[i].images.downsized_still.url;
 
                     // Creating an image tag
                     var showImage = $("<img>");
@@ -126,6 +126,7 @@ $(document).on("click", '.showButton', function () {
                     showImage.attr("data-animated", animated)
                     showImage.attr("data-state", "still");
                     showImage.addClass("searchImage");
+                    showImage.addClass("col-md-12");
 
                     // test
                     console.log(show);
